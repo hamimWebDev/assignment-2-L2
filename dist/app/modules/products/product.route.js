@@ -18,4 +18,7 @@ router.get("/:productId", product_controller_1.productsController.getProductById
 router.put("/:productId", product_controller_1.productsController.putProductByIdFromDb);
 // delete A product by id
 router.delete("/:productId", product_controller_1.productsController.deletedProductByIdFromDb);
+// search all iphone
+// /api/products/search/iphone
+router.get("/search/iphone", product_controller_1.productsController.searchIPhoneByIdFromDb);
 exports.productsRoute = router;

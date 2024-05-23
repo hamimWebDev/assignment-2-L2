@@ -26,10 +26,18 @@ const deletedProductByIdFromDb = async (id: string) => {
   return result;
 };
 
+const searchIPhoneByIdFromDb = async () => {
+  const products = await Product.find({
+    name: { $regex: "iphone", $options: "i" },
+  });
+  return products;
+};
+
 export const productsService = {
   postProductsFromDb,
   getAllProductsFromDb,
   getProductByIdFromDb,
   deletedProductByIdFromDb,
   putProductByIdFromDb,
+  searchIPhoneByIdFromDb,
 };

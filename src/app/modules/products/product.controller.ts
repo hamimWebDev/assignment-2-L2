@@ -110,10 +110,28 @@ const deletedProductByIdFromDb = async (req: Request, res: Response) => {
   }
 };
 
+const searchIPhoneByIdFromDb = async (req: Request, res: Response) => {
+  try {
+    const result = await productsService.searchIPhoneByIdFromDb();
+
+    res.json({
+      success: true,
+      message: "Products matching search term 'iphone' fetched successfully!",
+      data: result,
+    });
+  } catch (err: any) {
+    res.status(404).json({
+      success: false,
+      message: err.message,
+    });
+  }
+};
+
 export const productsController = {
   postProductsFromDb,
   getAllProductsFromDb,
   getProductByIdFromDb,
   deletedProductByIdFromDb,
   putProductByIdFromDb,
+  searchIPhoneByIdFromDb,
 };

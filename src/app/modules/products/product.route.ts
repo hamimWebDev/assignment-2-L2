@@ -19,4 +19,8 @@ router.put("/:productId", productsController.putProductByIdFromDb);
 // delete A product by id
 router.delete("/:productId", productsController.deletedProductByIdFromDb);
 
+// search all iphone
+// /api/products/search/iphone
+router.get("/search/iphone", productsController.searchIPhoneByIdFromDb);
+
 export const productsRoute = router;

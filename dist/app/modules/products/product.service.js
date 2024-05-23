@@ -34,10 +34,17 @@ const deletedProductByIdFromDb = (id) => __awaiter(void 0, void 0, void 0, funct
     const result = yield product_model_1.default.updateOne({ _id: id }, { isDeleted: true });
     return result;
 });
+const searchIPhoneByIdFromDb = () => __awaiter(void 0, void 0, void 0, function* () {
+    const products = yield product_model_1.default.find({
+        name: { $regex: "iphone", $options: "i" },
+    });
+    return products;
+});
 exports.productsService = {
     postProductsFromDb,
     getAllProductsFromDb,
     getProductByIdFromDb,
     deletedProductByIdFromDb,
     putProductByIdFromDb,
+    searchIPhoneByIdFromDb,
 };

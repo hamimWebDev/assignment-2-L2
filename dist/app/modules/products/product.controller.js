@@ -115,10 +115,27 @@ const deletedProductByIdFromDb = (req, res) => __awaiter(void 0, void 0, void 0,
         });
     }
 });
+const searchIPhoneByIdFromDb = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const result = yield product_service_1.productsService.searchIPhoneByIdFromDb();
+        res.json({
+            success: true,
+            message: "Products matching search term 'iphone' fetched successfully!",
+            data: result,
+        });
+    }
+    catch (err) {
+        res.status(404).json({
+            success: false,
+            message: err.message,
+        });
+    }
+});
 exports.productsController = {
     postProductsFromDb,
     getAllProductsFromDb,
     getProductByIdFromDb,
     deletedProductByIdFromDb,
     putProductByIdFromDb,
+    searchIPhoneByIdFromDb,
 };
