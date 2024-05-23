@@ -26,6 +26,10 @@ const getProductByIdFromDb = (id) => __awaiter(void 0, void 0, void 0, function*
     const result = yield product_model_1.default.findById(id);
     return result;
 });
+const putProductByIdFromDb = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const product = yield product_model_1.default.findById(id);
+    return product;
+});
 const deletedProductByIdFromDb = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield product_model_1.default.updateOne({ _id: id }, { isDeleted: true });
     return result;
@@ -35,4 +39,5 @@ exports.productsService = {
     getAllProductsFromDb,
     getProductByIdFromDb,
     deletedProductByIdFromDb,
+    putProductByIdFromDb,
 };
