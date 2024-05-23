@@ -6,6 +6,12 @@ const postProductsFromDb = async (pData: TProduct) => {
   return result;
 };
 
+const getAllProductsFromDb = async () => {
+  const result = await Product.find();
+  return result;
+};
+
 export const productsService = {
   postProductsFromDb,
+  getAllProductsFromDb,
 };

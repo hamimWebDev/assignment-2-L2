@@ -28,6 +28,23 @@ const postProductsFromDb = (req, res) => __awaiter(void 0, void 0, void 0, funct
         });
     }
 });
+const getAllProductsFromDb = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const result = yield product_service_1.productsService.getAllProductsFromDb();
+        res.json({
+            success: true,
+            message: "Products fetched successfully!",
+            data: result,
+        });
+    }
+    catch (err) {
+        res.status(404).json({
+            success: false,
+            message: err.message,
+        });
+    }
+});
 exports.productsController = {
     postProductsFromDb,
+    getAllProductsFromDb,
 };

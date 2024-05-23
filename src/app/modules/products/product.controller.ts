@@ -19,6 +19,24 @@ const postProductsFromDb = async (req: Request, res: Response) => {
   }
 };
 
+const getAllProductsFromDb = async (req: Request, res: Response) => {
+  try {
+    const result = await productsService.getAllProductsFromDb();
+
+    res.json({
+      success: true,
+      message: "Products fetched successfully!",
+      data: result,
+    });
+  } catch (err: any) {
+    res.status(404).json({
+      success: false,
+      message: err.message,
+    });
+  }
+};
+
 export const productsController = {
   postProductsFromDb,
+  getAllProductsFromDb,
 };

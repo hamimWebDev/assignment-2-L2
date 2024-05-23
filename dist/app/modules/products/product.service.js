@@ -18,6 +18,11 @@ const postProductsFromDb = (pData) => __awaiter(void 0, void 0, void 0, function
     const result = yield product_model_1.default.create(pData);
     return result;
 });
+const getAllProductsFromDb = () => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield product_model_1.default.find();
+    return result;
+});
 exports.productsService = {
     postProductsFromDb,
+    getAllProductsFromDb,
 };
