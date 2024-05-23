@@ -11,10 +11,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.productsController = void 0;
 const product_service_1 = require("./product.service");
+const product_zod_validation_1 = require("./product.zod.validation");
 const postProductsFromDb = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const productData = req.body;
-        const result = yield product_service_1.productsService.postProductsFromDb(productData);
+        const zodData = product_zod_validation_1.ProductSchema.parse(productData);
+        const result = yield product_service_1.productsService.postProductsFromDb(zodData);
         res.json({
             success: true,
             message: "Product created successfully!",

@@ -1,10 +1,12 @@
 import { Request, Response } from "express";
 import { productsService } from "./product.service";
+import { ProductSchema } from "./product.zod.validation";
 
 const postProductsFromDb = async (req: Request, res: Response) => {
   try {
     const productData = req.body;
-    const result = await productsService.postProductsFromDb(productData);
+    const zodData = ProductSchema.parse(productData);
+    const result = await productsService.postProductsFromDb(zodData);
 
     res.json({
       success: true,
@@ -122,7 +124,6 @@ const deletedProductByIdFromDb = async (req: Request, res: Response) => {
     });
   }
 };
-
 
 export const productsController = {
   postProductsFromDb,
