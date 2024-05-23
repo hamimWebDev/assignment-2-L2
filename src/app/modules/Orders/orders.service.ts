@@ -6,6 +6,12 @@ const postOrdersFromDb = async (OData: TOrder) => {
   return result;
 };
 
+const getAllOrdersFromDb = async () => {
+  const result = await Order.find();
+  return result;
+};
+
 export const ordersService = {
   postOrdersFromDb,
+  getAllOrdersFromDb,
 };

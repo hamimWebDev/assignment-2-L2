@@ -30,12 +30,23 @@ const postProductsFromDb = (req, res) => __awaiter(void 0, void 0, void 0, funct
 });
 const getAllProductsFromDb = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const result = yield product_service_1.productsService.getAllProductsFromDb();
-        res.json({
-            success: true,
-            message: "Products fetched successfully!",
-            data: result,
-        });
+        const searchTerm = req.query.searchTerm;
+        if (typeof searchTerm == "undefined") {
+            const result = yield product_service_1.productsService.getAllProductsFromDb();
+            res.json({
+                success: true,
+                message: "Products fetched successfully!",
+                data: result,
+            });
+        }
+        else if (typeof searchTerm !== "undefined") {
+            const result = yield product_service_1.productsService.searchIPhoneByIdFromDb();
+            res.json({
+                success: true,
+                message: "Products matching search term 'iphone' fetched successfully!",
+                data: result,
+            });
+        }
     }
     catch (err) {
         res.status(404).json({
@@ -115,27 +126,10 @@ const deletedProductByIdFromDb = (req, res) => __awaiter(void 0, void 0, void 0,
         });
     }
 });
-const searchIPhoneByIdFromDb = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const result = yield product_service_1.productsService.searchIPhoneByIdFromDb();
-        res.json({
-            success: true,
-            message: "Products matching search term 'iphone' fetched successfully!",
-            data: result,
-        });
-    }
-    catch (err) {
-        res.status(404).json({
-            success: false,
-            message: err.message,
-        });
-    }
-});
 exports.productsController = {
     postProductsFromDb,
     getAllProductsFromDb,
     getProductByIdFromDb,
     deletedProductByIdFromDb,
     putProductByIdFromDb,
-    searchIPhoneByIdFromDb,
 };

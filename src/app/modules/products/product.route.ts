@@ -3,10 +3,11 @@ import Product from "./product.model";
 import { productsController } from "./product.controller";
 const router = express.Router();
 
-// post route
+// post product
 router.post("/", productsController.postProductsFromDb);
 
-// get All route
+// search all iphone
+// get All product
 router.get("/", productsController.getAllProductsFromDb);
 
 // get A product by id
@@ -18,10 +19,6 @@ router.put("/:productId", productsController.putProductByIdFromDb);
 
 // delete A product by id
 router.delete("/:productId", productsController.deletedProductByIdFromDb);
-
-// search all iphone
-// /api/products/search/iphone
-router.get("/search/iphone", productsController.searchIPhoneByIdFromDb);
 
 // product Tasks complete
 

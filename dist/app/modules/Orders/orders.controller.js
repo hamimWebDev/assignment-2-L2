@@ -8,9 +8,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ordersController = void 0;
 const orders_service_1 = require("./orders.service");
+const orders_model_1 = __importDefault(require("./orders.model"));
 const postOrdersFromDb = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const orderData = req.body;
@@ -28,6 +32,30 @@ const postOrdersFromDb = (req, res) => __awaiter(void 0, void 0, void 0, functio
         });
     }
 });
+const getAllOrdersFromDb = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const email = req.query.email;
+        if (typeof email == "undefined") {
+            const result = yield orders_service_1.ordersService.getAllOrdersFromDb();
+            res.json({
+                success: true,
+                message: "Orders fetched successfully!",
+                data: result,
+            });
+        }
+        else if (typeof email !== "undefined") {
+            const orders = yield orders_model_1.default.find({ email: { $eq: email } });
+            return res.json(orders);
+        }
+    }
+    catch (err) {
+        res.status(404).json({
+            success: false,
+            message: err.message,
+        });
+    }
+});
 exports.ordersController = {
     postOrdersFromDb,
+    getAllOrdersFromDb,
 };

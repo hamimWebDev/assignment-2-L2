@@ -18,6 +18,11 @@ const postOrdersFromDb = (OData) => __awaiter(void 0, void 0, void 0, function* 
     const result = yield orders_model_1.default.create(OData);
     return result;
 });
+const getAllOrdersFromDb = () => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield orders_model_1.default.find();
+    return result;
+});
 exports.ordersService = {
     postOrdersFromDb,
+    getAllOrdersFromDb,
 };

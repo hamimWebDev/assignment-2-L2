@@ -21,13 +21,25 @@ const postProductsFromDb = async (req: Request, res: Response) => {
 
 const getAllProductsFromDb = async (req: Request, res: Response) => {
   try {
-    const result = await productsService.getAllProductsFromDb();
+    const searchTerm = req.query.searchTerm as string;
 
-    res.json({
-      success: true,
-      message: "Products fetched successfully!",
-      data: result,
-    });
+    if (typeof searchTerm == "undefined") {
+      const result = await productsService.getAllProductsFromDb();
+
+      res.json({
+        success: true,
+        message: "Products fetched successfully!",
+        data: result,
+      });
+    } else if (typeof searchTerm !== "undefined") {
+      const result = await productsService.searchIPhoneByIdFromDb();
+
+      res.json({
+        success: true,
+        message: "Products matching search term 'iphone' fetched successfully!",
+        data: result,
+      });
+    }
   } catch (err: any) {
     res.status(404).json({
       success: false,
@@ -39,6 +51,7 @@ const getAllProductsFromDb = async (req: Request, res: Response) => {
 const getProductByIdFromDb = async (req: Request, res: Response) => {
   try {
     const _id = req.params.productId;
+
     const result = await productsService.getProductByIdFromDb(_id);
 
     res.json({
@@ -110,22 +123,6 @@ const deletedProductByIdFromDb = async (req: Request, res: Response) => {
   }
 };
 
-const searchIPhoneByIdFromDb = async (req: Request, res: Response) => {
-  try {
-    const result = await productsService.searchIPhoneByIdFromDb();
-
-    res.json({
-      success: true,
-      message: "Products matching search term 'iphone' fetched successfully!",
-      data: result,
-    });
-  } catch (err: any) {
-    res.status(404).json({
-      success: false,
-      message: err.message,
-    });
-  }
-};
 
 export const productsController = {
   postProductsFromDb,
@@ -133,5 +130,4 @@ export const productsController = {
   getProductByIdFromDb,
   deletedProductByIdFromDb,
   putProductByIdFromDb,
-  searchIPhoneByIdFromDb,
 };

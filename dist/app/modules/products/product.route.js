@@ -7,9 +7,10 @@ exports.productsRoute = void 0;
 const express_1 = __importDefault(require("express"));
 const product_controller_1 = require("./product.controller");
 const router = express_1.default.Router();
-// post route
+// post product
 router.post("/", product_controller_1.productsController.postProductsFromDb);
-// get All route
+// search all iphone
+// get All product
 router.get("/", product_controller_1.productsController.getAllProductsFromDb);
 // get A product by id
 router.get("/:productId", product_controller_1.productsController.getProductByIdFromDb);
@@ -18,8 +19,5 @@ router.get("/:productId", product_controller_1.productsController.getProductById
 router.put("/:productId", product_controller_1.productsController.putProductByIdFromDb);
 // delete A product by id
 router.delete("/:productId", product_controller_1.productsController.deletedProductByIdFromDb);
-// search all iphone
-// /api/products/search/iphone
-router.get("/search/iphone", product_controller_1.productsController.searchIPhoneByIdFromDb);
 // product Tasks complete
 exports.productsRoute = router;
