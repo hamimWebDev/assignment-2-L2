@@ -7,6 +7,8 @@ router.post("/", productsController.postProductsFromDb);
 // get All route
 router.get("/", productsController.getAllProductsFromDb);
 // get A product by id
-router.get("/:productId", productsController.getProductsByIdFromDb);
+router.get("/:productId", productsController.getProductByIdFromDb);
+// delete A product by id
+router.delete("/:productId", productsController.deletedProductByIdFromDb);
 
 export const productsRoute = router;

@@ -12,5 +12,7 @@ router.post("/", product_controller_1.productsController.postProductsFromDb);
 // get All route
 router.get("/", product_controller_1.productsController.getAllProductsFromDb);
 // get A product by id
-router.get("/:productId", product_controller_1.productsController.getProductsByIdFromDb);
+router.get("/:productId", product_controller_1.productsController.getProductByIdFromDb);
+// delete A product by id
+router.delete("/:productId", product_controller_1.productsController.deletedProductByIdFromDb);
 exports.productsRoute = router;

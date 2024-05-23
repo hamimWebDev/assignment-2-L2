@@ -11,13 +11,19 @@ const getAllProductsFromDb = async () => {
   return result;
 };
 
-const getProductsByIdFromDb = async (id: string) => {
+const getProductByIdFromDb = async (id: string) => {
   const result = await Product.findById(id);
+  return result;
+};
+
+const deletedProductByIdFromDb = async (id: string) => {
+  const result = await Product.updateOne({ _id: id }, { isDeleted: true });
   return result;
 };
 
 export const productsService = {
   postProductsFromDb,
   getAllProductsFromDb,
-  getProductsByIdFromDb,
+  getProductByIdFromDb,
+  deletedProductByIdFromDb,
 };

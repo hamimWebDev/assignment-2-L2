@@ -36,10 +36,10 @@ const getAllProductsFromDb = async (req: Request, res: Response) => {
   }
 };
 
-const getProductsByIdFromDb = async (req: Request, res: Response) => {
+const getProductByIdFromDb = async (req: Request, res: Response) => {
   try {
     const _id = req.params.productId;
-    const result = await productsService.getProductsByIdFromDb(_id);
+    const result = await productsService.getProductByIdFromDb(_id);
 
     res.json({
       success: true,
@@ -54,8 +54,27 @@ const getProductsByIdFromDb = async (req: Request, res: Response) => {
   }
 };
 
+const deletedProductByIdFromDb = async (req: Request, res: Response) => {
+  try {
+    const _id = req.params.productId;
+    const result = await productsService.deletedProductByIdFromDb(_id);
+
+    res.json({
+      success: true,
+      message: "Product deleted successfully!",
+      data: result,
+    });
+  } catch (err: any) {
+    res.status(404).json({
+      success: false,
+      message: err.message,
+    });
+  }
+};
+
 export const productsController = {
   postProductsFromDb,
   getAllProductsFromDb,
-  getProductsByIdFromDb,
+  getProductByIdFromDb,
+  deletedProductByIdFromDb
 };
