@@ -15,10 +15,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ordersController = void 0;
 const orders_service_1 = require("./orders.service");
 const orders_model_1 = __importDefault(require("./orders.model"));
+const order_zod_validation_1 = __importDefault(require("./order.zod.validation"));
 const postOrdersFromDb = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const orderData = req.body;
-        const result = yield orders_service_1.ordersService.postOrdersFromDb(orderData);
+        const zodData = order_zod_validation_1.default.parse(orderData);
+        const result = yield orders_service_1.ordersService.postOrdersFromDb(zodData);
         res.json({
             success: true,
             message: "Order created successfully!",

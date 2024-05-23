@@ -13,5 +13,5 @@ exports.app.use(express_1.default.json());
 exports.app.use("/api/products", product_route_1.productsRoute);
 exports.app.use("/api/orders", orders_route_1.ordersRoute);
 exports.app.get("/", (req, res) => {
-    res.send("Hello World!");
+    res.send("Hello Examiner!");
 });
