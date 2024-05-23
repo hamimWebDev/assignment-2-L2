@@ -22,7 +22,12 @@ const getAllProductsFromDb = () => __awaiter(void 0, void 0, void 0, function* (
     const result = yield product_model_1.default.find();
     return result;
 });
+const getProductsByIdFromDb = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield product_model_1.default.findById(id);
+    return result;
+});
 exports.productsService = {
     postProductsFromDb,
     getAllProductsFromDb,
+    getProductsByIdFromDb,
 };

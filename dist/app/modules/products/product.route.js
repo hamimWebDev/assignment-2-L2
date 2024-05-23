@@ -11,4 +11,6 @@ const router = express_1.default.Router();
 router.post("/", product_controller_1.productsController.postProductsFromDb);
 // get All route
 router.get("/", product_controller_1.productsController.getAllProductsFromDb);
+// get A product by id
+router.get("/:productId", product_controller_1.productsController.getProductsByIdFromDb);
 exports.productsRoute = router;

@@ -44,7 +44,25 @@ const getAllProductsFromDb = (req, res) => __awaiter(void 0, void 0, void 0, fun
         });
     }
 });
+const getProductsByIdFromDb = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const _id = req.params.productId;
+        const result = yield product_service_1.productsService.getProductsByIdFromDb(_id);
+        res.json({
+            success: true,
+            message: "Product fetched successfully!",
+            data: result,
+        });
+    }
+    catch (err) {
+        res.status(404).json({
+            success: false,
+            message: err.message,
+        });
+    }
+});
 exports.productsController = {
     postProductsFromDb,
     getAllProductsFromDb,
+    getProductsByIdFromDb,
 };
